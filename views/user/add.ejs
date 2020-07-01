@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<style>
+			table.center {
+			margin-left:auto; 
+			margin-right:auto;
+		  }
+		</style>
+	</head>
+</body>
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+
+<form action="/users/add" method="post" name="form1">
+	<table width="25%" border="0">
+		<tr> 
+			<td>Nama</td>
+			<td><input type="text" name="nama" id="nama" /></td>
+		</tr>
+		<tr> 
+			<td>Alamat</td>	
+			<td><input type="text" name="alamat" /></td>
+		</tr>
+		<tr> 
+			<td>Tempat Lahir</td>
+			<td><input type="text" name="Tempat_lahir"/></td>
+		</tr>
+		<tr> 
+			<td>Tanggal Lahir</td>
+			<td><input type="date" name="tgl_lahir"/></td>
+		</tr>
+		<tr> 
+			<td>Tinggi</td>
+			<td><input type="text" name="tinggi" placeholder="centimeter"/></td>
+		</tr>
+		<tr> 
+			<td>Pekerjaan</td>
+			<td><input type="text" name="pekerjaan"/></td>
+		</tr>
+		<tr> 
+			<td>No Sim</td>
+			<td><input type="text" name="No_sim" /></td>
+		</tr>
+		<tr> 
+			<td></td>
+			<td><input type="submit" name="Submit" value="Add" /></td>
+		</tr>
+	</table>
+</form>
+
+
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!--
+including header content which is common for all pages
+-->
+<head>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+</head
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+
+<table id="example" class="display" width="100%" cellspacing="0">
+<thead>
+	<tr style='text-align:left; background-color:aqua'>
+		<!-- <th>No</th> -->
+		<th>Nama</th>
+		<th>Alamat</th>
+		<th>Tempat lahir</th>
+		<th>Tanggal lahir</th>
+		<th>Tinggi (cm)</th>
+		<th>Pekerjaan</th>
+		<th>No Sim</th>
+		<th>Action</th>
+	</tr>
+</thead>
+
+	
+	<!--
+		Using FOREACH LOOP for the users array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<tbody>
+	<% if (data) { %>
+	<% data.forEach(function(user){ %>
+		<tr>
+			<!-- <td><%= user.id %></td> -->
+			<td><%= user.nama %></td>
+			<td><%= user.alamat %></td>
+			<td><%= user.Tempat_lahir %></td>
+			<td><%= user.tgl_lahir %></td>
+			<td><%= user.tinggi %></td>
+			<td><%= user.pekerjaan %></td>
+			<td><%= user.No_sim %></td>
+			<td>
+				<div style="float:left">
+					<button type="button" class="btn btn-primary">Primary	
+					<a href='/users/edit/<%= user.id %>'>Edit</a> &nbsp;	
+					</button>						
+					<form method="post" action="/users/delete/<%= user.id %>" style="float:right">
+						<button type="button" class="btn btn-danger">
+						<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+						</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+	</tbody>
+
+</table>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
